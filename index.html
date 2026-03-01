@@ -223,7 +223,7 @@
             font-weight: bold;
         }
 
-        /* CALENDÁRIO INTERATIVO ESTILOS */
+        /* CALENDÁRIO INTERATIVO ESTILOS OTIMIZADOS */
         .calendar-section {
             background-color: var(--card-bg);
             border-radius: 12px;
@@ -257,20 +257,36 @@
             border: 1px dashed #f39c12;
             margin-bottom: 20px;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profiles-setup p {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .profile-inputs {
+            display: flex;
             gap: 10px;
             justify-content: center;
+            width: 100%;
         }
 
         .profiles-setup input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 14px;
+            padding: 10px 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
             outline: none;
-            width: 140px;
+            width: 100%;
+            max-width: 200px;
             text-align: center;
             font-weight: bold;
+            transition: border 0.3s;
         }
 
         .profiles-setup input:focus {
@@ -283,15 +299,17 @@
         }
 
         .month-selector select {
-            padding: 10px 15px;
-            font-size: 16px;
+            padding: 12px 20px;
+            font-size: 18px;
             border-radius: 8px;
-            border: 1px solid #ddd;
+            border: 2px solid #34495e;
             outline: none;
             background: white;
-            font-weight: 600;
-            color: #2c3e50;
+            font-weight: 700;
+            color: #1a252f;
             cursor: pointer;
+            width: 100%;
+            max-width: 300px;
         }
 
         .calendar-grid {
@@ -303,30 +321,39 @@
         .day-box {
             background: var(--bg);
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 10px;
+            border-radius: 10px;
+            padding: 12px;
             text-align: center;
             transition: all 0.2s;
             position: relative;
-            overflow: hidden;
+        }
+
+        .day-box:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e0;
         }
 
         .day-box.completed {
             background: #f0fdf4;
             border-color: var(--brand);
+            border-width: 2px;
         }
 
         .day-number {
             font-weight: 800;
-            font-size: 18px;
+            font-size: 20px;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: 6px;
+            padding: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .inputs-row {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .input-group {
@@ -336,46 +363,86 @@
             font-size: 12px;
             background: white;
             border: 1px solid #e2e8f0;
-            padding: 4px;
-            border-radius: 6px;
+            padding: 6px;
+            border-radius: 8px;
+            cursor: text;
+            transition: all 0.2s;
+        }
+
+        .input-group:focus-within {
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
         }
 
         .input-group span {
-            font-weight: 600;
-            color: #555;
+            font-weight: 700;
+            color: #4a5568;
             width: 55px;
             text-align: left;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-size: 13px;
         }
 
         .input-group input {
-            width: 50px;
-            padding: 4px;
+            width: 55px;
+            padding: 6px;
             text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
             outline: none;
-            font-weight: bold;
+            font-weight: 800;
+            font-size: 14px;
+            background: #f8fafc;
+            color: #2d3748;
         }
 
         .input-group input:focus {
-            border-color: var(--brand);
+            background: white;
+            border-color: #3498db;
         }
 
+        /* Estilo para input verde quando atinge +- a meta */
         .input-group input.done {
             background-color: #d1fae5;
             color: #065f46;
             border-color: #a7f3d0;
         }
 
+        .stats-bar {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 14px;
+            font-weight: bold;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .stats-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stats-value {
+            font-size: 22px;
+            color: #f1c40f;
+        }
+
         .disclaimer {
-            font-size: 11px;
-            color: #999;
+            font-size: 12px;
+            color: #7f8c8d;
             text-align: center;
-            margin-top: 15px;
-            font-style: italic;
+            margin-top: 20px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
         }
 
         .whatsapp-btn {
@@ -413,10 +480,16 @@
         @media (max-width: 500px) {
             .calendar-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .profile-inputs {
+                flex-direction: column;
+                align-items: center;
             }
 
             .profiles-setup input {
-                width: 45%;
+                max-width: 100%;
             }
         }
     </style>
@@ -593,41 +666,62 @@
             </div>
         </div>
 
+        <hr style="border: 0; border-top: 2px dashed #cbd5e0; margin: 40px 0;">
+
         <!-- CALENDÁRIO INTERATIVO 2026 -->
-        <div class="calendar-section">
+        <div class="calendar-section" id="calendario">
             <div class="cal-header">
-                <h2>🗓️ Calendário de Metas 2026</h2>
-                <p>Registre a quantidade de questões feitas diariamente (Meta: 50 questões/dia).</p>
+                <h2>🗓️ Calendário Interativo de Metas 2026</h2>
+                <p style="font-size: 16px; color: #2c3e50;"><strong>Como usar:</strong> Coloque o nome de vocês abaixo.
+                    Todo dia, acessem este link, selecionem o mês e digitem na caixa branca a quantidade exata de
+                    questões que cada um fez no dia!</p>
             </div>
 
             <div class="profiles-setup">
-                <input type="text" id="name1" placeholder="Seu Nome" maxlength="12" oninput="updateNames()">
-                <input type="text" id="name2" placeholder="Nome Estudante 2" maxlength="12" oninput="updateNames()">
+                <p><strong>Quem está estudando junto?</strong></p>
+                <div class="profile-inputs">
+                    <input type="text" id="name1" placeholder="Nome 1" maxlength="12" oninput="updateNames()">
+                    <input type="text" id="name2" placeholder="Nome 2" maxlength="12" oninput="updateNames()">
+                </div>
             </div>
 
             <div class="month-selector">
                 <select id="monthSelect" onchange="renderCalendar()">
-                    <option value="0">Janeiro - 2026</option>
-                    <option value="1">Fevereiro - 2026</option>
-                    <option value="2">Março - 2026</option>
-                    <option value="3">Abril - 2026</option>
-                    <option value="4">Maio - 2026</option>
-                    <option value="5">Junho - 2026</option>
-                    <option value="6">Julho - 2026</option>
-                    <option value="7">Agosto - 2026</option>
-                    <option value="8">Setembro - 2026</option>
-                    <option value="9">Outubro - 2026</option>
-                    <option value="10">Novembro - 2026</option>
-                    <option value="11">Dezembro - 2026</option>
+                    <option value="0">📅 Janeiro 2026</option>
+                    <option value="1">📅 Fevereiro 2026</option>
+                    <option value="2">📅 Março 2026</option>
+                    <option value="3">📅 Abril 2026</option>
+                    <option value="4">📅 Maio 2026</option>
+                    <option value="5">📅 Junho 2026</option>
+                    <option value="6">📅 Julho 2026</option>
+                    <option value="7">📅 Agosto 2026</option>
+                    <option value="8">📅 Setembro 2026</option>
+                    <option value="9">📅 Outubro 2026</option>
+                    <option value="10">📅 Novembro 2026</option>
+                    <option value="11">📅 Dezembro 2026</option>
                 </select>
             </div>
 
-            <div class="calendar-grid" id="calendarGrid">
+            <div class="stats-bar" id="statsBar">
+                <div class="stats-item">
+                    <span>Total Mês <span id="lblStatP1" style="color:#bdc3c7;">(Nome 1)</span></span>
+                    <span class="stats-value" id="valStatP1">0</span>
+                </div>
+                <div class="stats-item">
+                    <span>Total Mês <span id="lblStatP2" style="color:#bdc3c7;">(Nome 2)</span></span>
+                    <span class="stats-value" id="valStatP2">0</span>
+                </div>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid" style="margin-top: 20px;">
                 <!-- Gerado dinamicamente -->
             </div>
 
-            <p class="disclaimer">*Os dados ficam salvos apenas neste navegador (localmente). Para sincronizar com a
-                dupla, compartilhem capturas de tela das metas cumpridas na semana.</p>
+            <div class="disclaimer">
+                <strong>⚠️ Atenção:</strong> Como este é um site estático e gratuito, as informações digitadas são
+                salvas apenas na memória do navegador (celular/PC) em que foi acessado. Para acompanhar o progresso real
+                um do outro, sugerimos compartilhar o "print" da tela toda sexta-feira no grupo do WhatsApp!
+            </div>
         </div>
 
         <!-- Botão de Compartilhamento -->
@@ -640,9 +734,9 @@
         </button>
 
         <script>
-            // Dados de usuários
-            let p1Name = localStorage.getItem('p1Name') || "Tiago";
-            let p2Name = localStorage.getItem('p2Name') || "Amigo(a)";
+            // Dados de usuários salvos no localStorage do navegador
+            let p1Name = localStorage.getItem('cp1Name') || "Tiago";
+            let p2Name = localStorage.getItem('cp2Name') || "Amigo(a)";
 
             document.getElementById('name1').value = p1Name;
             document.getElementById('name2').value = p2Name;
@@ -650,40 +744,77 @@
             function updateNames() {
                 p1Name = document.getElementById('name1').value || "Tiago";
                 p2Name = document.getElementById('name2').value || "Amigo(a)";
-                localStorage.setItem('p1Name', p1Name);
-                localStorage.setItem('p2Name', p2Name);
+                localStorage.setItem('cp1Name', p1Name);
+                localStorage.setItem('cp2Name', p2Name);
 
-                // Atualizar spans na tela atual
+                // Atualizar spans na tela atual (dias)
                 document.querySelectorAll('.lbl-p1').forEach(el => el.textContent = p1Name);
                 document.querySelectorAll('.lbl-p2').forEach(el => el.textContent = p2Name);
+
+                // Atualizar barra de stats
+                document.getElementById('lblStatP1').textContent = `(${p1Name})`;
+                document.getElementById('lblStatP2').textContent = `(${p2Name})`;
+
+                calculateStats();
             }
 
             function saveScore(month, day, userIndex, element) {
                 let val = parseInt(element.value);
                 if (isNaN(val)) val = 0;
 
-                // Se bateu a meta mínima (50) ou não? O ideal são 50 diárias. Mostra em verde se fez >=25 (exemplo)
+                // Marca de verdinho bonito se a pessoa fez >=25 questões no dia (ajustável)
                 if (val >= 25) {
                     element.classList.add('done');
                 } else {
                     element.classList.remove('done');
                 }
 
-                const key = `score_2026_${month}_${day}_u${userIndex}`;
+                const key = `c26_${month}_${day}_u${userIndex}`;
                 localStorage.setItem(key, val);
+
                 checkDayGoal(month, day);
+                calculateStats();
             }
 
             function checkDayGoal(month, day) {
-                const v1 = parseInt(localStorage.getItem(`score_2026_${month}_${day}_u1`)) || 0;
-                const v2 = parseInt(localStorage.getItem(`score_2026_${month}_${day}_u2`)) || 0;
+                const v1 = parseInt(localStorage.getItem(`c26_${month}_${day}_u1`)) || 0;
+                const v2 = parseInt(localStorage.getItem(`c26_${month}_${day}_u2`)) || 0;
                 const dayBox = document.getElementById(`daybox_${month}_${day}`);
 
-                // Se ambos fizeram as 50 questões do dia (Total: 100 somados ou cada um faz 50? Deixemos 50 como referência excelente)
-                if (v1 >= 50 && v2 >= 50) {
+                if (!dayBox) return;
+
+                // Se ambos somarem 50 questões ou mais juntos, ou cada um fizer 25, considera Dia Batido e pinta o quadrado inteiro.
+                if (v1 + v2 >= 50) {
                     dayBox.classList.add('completed');
                 } else {
                     dayBox.classList.remove('completed');
+                }
+            }
+
+            function calculateStats() {
+                const mSelect = document.getElementById('monthSelect');
+                const month = parseInt(mSelect.value);
+                const daysInMonth = new Date(2026, month + 1, 0).getDate();
+
+                let totalP1 = 0;
+                let totalP2 = 0;
+
+                for (let d = 1; d <= daysInMonth; d++) {
+                    totalP1 += parseInt(localStorage.getItem(`c26_${month}_${d}_u1`)) || 0;
+                    totalP2 += parseInt(localStorage.getItem(`c26_${month}_${d}_u2`)) || 0;
+                }
+
+                document.getElementById('valStatP1').innerText = totalP1;
+                document.getElementById('valStatP2').innerText = totalP2;
+            }
+
+            function focusInput(inputId) {
+                const input = document.getElementById(inputId);
+                if (input) {
+                    if (input.value == "0" || input.value == "") {
+                        input.value = "";
+                    }
+                    input.focus();
                 }
             }
 
@@ -694,42 +825,49 @@
 
                 grid.innerHTML = '';
 
-                // Retorna a qnt de dias num mês em 2026
                 const daysInMonth = new Date(2026, month + 1, 0).getDate();
 
                 for (let d = 1; d <= daysInMonth; d++) {
-                    const sv1 = localStorage.getItem(`score_2026_${month}_${d}_u1`) || '';
-                    const sv2 = localStorage.getItem(`score_2026_${month}_${d}_u2`) || '';
+                    const sv1 = localStorage.getItem(`c26_${month}_${d}_u1`) || '';
+                    const sv2 = localStorage.getItem(`c26_${month}_${d}_u2`) || '';
 
-                    const doneClass1 = sv1 >= 25 ? "done" : "";
-                    const doneClass2 = sv2 >= 25 ? "done" : "";
+                    const val1AsInt = parseInt(sv1) || 0;
+                    const val2AsInt = parseInt(sv2) || 0;
 
-                    const c1 = sv1 >= 50 && sv2 >= 50 ? "completed" : "";
+                    const doneClass1 = val1AsInt >= 25 ? "done" : "";
+                    const doneClass2 = val2AsInt >= 25 ? "done" : "";
+
+                    const c1 = (val1AsInt + val2AsInt) >= 50 ? "completed" : "";
+
+                    const inputId1 = `inp_${month}_${d}_1`;
+                    const inputId2 = `inp_${month}_${d}_2`;
 
                     const cardHtml = `
                 <div class="day-box ${c1}" id="daybox_${month}_${d}">
                     <div class="day-number">Dia ${d}</div>
                     <div class="inputs-row">
-                        <div class="input-group">
+                        <div class="input-group" onclick="focusInput('${inputId1}')">
                             <span class="lbl-p1" title="${p1Name}">${p1Name}</span>
-                            <input type="number" min="0" max="999" placeholder="Qs" class="${doneClass1}" value="${sv1}" oninput="saveScore(${month}, ${d}, 1, this)">
+                            <input type="number" id="${inputId1}" min="0" max="999" placeholder="0" class="${doneClass1}" value="${sv1}" oninput="saveScore(${month}, ${d}, 1, this)">
                         </div>
-                        <div class="input-group">
+                        <div class="input-group" onclick="focusInput('${inputId2}')">
                             <span class="lbl-p2" title="${p2Name}">${p2Name}</span>
-                            <input type="number" min="0" max="999" placeholder="Qs" class="${doneClass2}" value="${sv2}" oninput="saveScore(${month}, ${d}, 2, this)">
+                            <input type="number" id="${inputId2}" min="0" max="999" placeholder="0" class="${doneClass2}" value="${sv2}" oninput="saveScore(${month}, ${d}, 2, this)">
                         </div>
                     </div>
                 </div>`;
                     grid.innerHTML += cardHtml;
                 }
+                updateNames(); // Call this to set the names on the newly generated cards
+                calculateStats();
             }
 
-            // Definir mês inicial para o de hoje ou janeiro se não for 2026
+            // Definir mês inicial
             const today = new Date();
             if (today.getFullYear() === 2026) {
                 document.getElementById('monthSelect').value = today.getMonth();
             } else {
-                document.getElementById('monthSelect').value = 0; // Janeiro
+                document.getElementById('monthSelect').value = 0; // Se não for 2026 ainda, abre em Janeiro
             }
 
             // Inicializa
@@ -737,7 +875,6 @@
 
             function shareOnWhatsApp() {
                 const linkBase = "https://tiago-webjs.github.io/Cronograma_2026_SEDES-DF/";
-                // Você pode alterar isso para o link final do GitHub Pages
                 const text = encodeURIComponent('Confira este Cronograma de Estudos Semanal com o Calendário Interativo de Questões de 2026 que fiz para o nosso acompanhamento! 📚🎯\nAcesse aqui: ' + linkBase);
                 window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
             }
