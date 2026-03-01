@@ -736,14 +736,14 @@
         <script>
             // Dados de usuários salvos no localStorage do navegador
             let p1Name = localStorage.getItem('cp1Name') || "Tiago";
-            let p2Name = localStorage.getItem('cp2Name') || "Amigo(a)";
+            let p2Name = localStorage.getItem('cp2Name') || "Susan";
 
             document.getElementById('name1').value = p1Name;
             document.getElementById('name2').value = p2Name;
 
             function updateNames() {
                 p1Name = document.getElementById('name1').value || "Tiago";
-                p2Name = document.getElementById('name2').value || "Amigo(a)";
+                p2Name = document.getElementById('name2').value || "Susan";
                 localStorage.setItem('cp1Name', p1Name);
                 localStorage.setItem('cp2Name', p2Name);
 
